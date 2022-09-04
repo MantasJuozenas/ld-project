@@ -2,6 +2,7 @@ body {
   margin: 0;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   padding: 10px;
+  height: 100vh;
 }
 
 .container {
@@ -29,8 +30,7 @@ body {
 .wrapper::before {
   content: '';
   background: linear-gradient(to bottom, #fff 0%, #dbf2ff 100%);
-  height: 476px;
-  top: 76px;
+  height: 50vh;
   position: absolute;
   left: 0;
   width: 100%;

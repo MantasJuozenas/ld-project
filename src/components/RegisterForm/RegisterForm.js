@@ -4,6 +4,7 @@ import { Link, NavLink } from 'react-router-dom';
 import * as Yup from 'yup';
 import style from '../LoginForm/LoginForm.module.scss';
 import clock from '../../assets/clock.svg';
+import Container from '../Container/Container';
 
 const initValues = {
   username: '',
@@ -51,7 +52,7 @@ function RegisterForm() {
   });
 
   return (
-    <>
+    <Container>
       {register ? (
         <div className={style.successMessage}>
           <p>Jūsų registracija buvo sėkminga, galite prisijungti čia</p>
@@ -133,7 +134,7 @@ function RegisterForm() {
           </div>
         </form>
       )}
-    </>
+    </Container>
   );
 }
 

@@ -6,6 +6,7 @@ import style from './LoginForm.module.scss';
 import { NavLink, useHistory } from 'react-router-dom';
 import { AuthContext } from '../../store/AuthContext';
 import clock from '../../assets/clock.svg';
+import Container from '../Container/Container';
 
 const initValues = {
   username: '',
@@ -69,60 +70,62 @@ function LoginForm() {
   });
 
   return (
-    <form onSubmit={formik.handleSubmit} className={style.form}>
-      <div>
-        <p className={style.loginTitle}>Susipažinkime</p>
-        <nav>
-          <NavLink className={`${style.navLink} ${active ? style.active : ''}`} to='/login'>
-            Prisijungti
-          </NavLink>
-          <NavLink className={style.navLinkReg} to='/register' onClick={() => setActive(false)}>
-            Registruotis
-          </NavLink>
-        </nav>
-        <div className={style.inputContainer}>
-          <input
-            className={formik.touched.username && formik.errors.username ? `${style.errorInput}` : ''}
-            type='text'
-            placeholder='Vartotojo vardas (pvz Jonas)'
-            name='username'
-            onChange={formik.handleChange}
-            onFocus={handleFocus}
-            value={formik.values.username}
-            onBlur={formik.handleBlur}
-          />
-          {formik.touched.username && formik.errors.username ? (
-            <p className={style.errorMsg}>{errorMsg || formik.errors.username}</p>
-          ) : (
-            <p className={`${style.padding} ${style.errorMsg}`}>{errorMsg ? errorMsg : error ? error : ''}</p>
-          )}
+    <Container>
+      <form onSubmit={formik.handleSubmit} className={style.form}>
+        <div>
+          <p className={style.loginTitle}>Susipažinkime</p>
+          <nav>
+            <NavLink className={`${style.navLink} ${active ? style.active : ''}`} to='/login'>
+              Prisijungti
+            </NavLink>
+            <NavLink className={style.navLinkReg} to='/register' onClick={() => setActive(false)}>
+              Registruotis
+            </NavLink>
+          </nav>
+          <div className={style.inputContainer}>
+            <input
+              className={formik.touched.username && formik.errors.username ? `${style.errorInput}` : ''}
+              type='text'
+              placeholder='Vartotojo vardas (pvz Jonas)'
+              name='username'
+              onChange={formik.handleChange}
+              onFocus={handleFocus}
+              value={formik.values.username}
+              onBlur={formik.handleBlur}
+            />
+            {formik.touched.username && formik.errors.username ? (
+              <p className={style.errorMsg}>{errorMsg || formik.errors.username}</p>
+            ) : (
+              <p className={`${style.padding} ${style.errorMsg}`}>{errorMsg ? errorMsg : error ? error : ''}</p>
+            )}
+          </div>
+          <div className={style.inputContainer}>
+            <input
+              className={formik.touched.password && formik.errors.password ? `${style.errorInput}` : ''}
+              name='password'
+              type='password'
+              placeholder='Jūsų slaptažodis'
+              onChange={formik.handleChange}
+              value={formik.values.password}
+              onFocus={handleFocus}
+              onBlur={formik.handleBlur}
+            />
+            {formik.touched.password && formik.errors.password ? (
+              <p className={style.errorMsg}>{errorMsg || formik.errors.password}</p>
+            ) : (
+              <p className={`${style.padding} ${style.errorMsg}`}>{errorMsg ? errorMsg : error ? error : ''}</p>
+            )}
+          </div>
+          <button type='submit'>Prisijungti</button>
         </div>
-        <div className={style.inputContainer}>
-          <input
-            className={formik.touched.password && formik.errors.password ? `${style.errorInput}` : ''}
-            name='password'
-            type='password'
-            placeholder='Jūsų slaptažodis'
-            onChange={formik.handleChange}
-            value={formik.values.password}
-            onFocus={handleFocus}
-            onBlur={formik.handleBlur}
-          />
-          {formik.touched.password && formik.errors.password ? (
-            <p className={style.errorMsg}>{errorMsg || formik.errors.password}</p>
-          ) : (
-            <p className={`${style.padding} ${style.errorMsg}`}>{errorMsg ? errorMsg : error ? error : ''}</p>
-          )}
+        <div>
+          <div className={style.message}>
+            <p>Prašome prisijungti įrašant vartotojo vardą ir slaptažodį</p>
+          </div>
+          <img className={style.clock} src={clock} alt='clock' />
         </div>
-        <button type='submit'>Prisijungti</button>
-      </div>
-      <div>
-        <div className={style.message}>
-          <p>Prašome prisijungti įrašant vartotojo vardą ir slaptažodį</p>
-        </div>
-        <img className={style.clock} src={clock} alt='clock' />
-      </div>
-    </form>
+      </form>
+    </Container>
   );
 }
 
