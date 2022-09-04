@@ -14,7 +14,8 @@ function AuthProvider(props) {
   const [token, setToken] = useState(localStorage.getItem('userToken'));
   const [admin, setAdmin] = useState(false);
 
-  function isAdmin() {
+  function isAdmin(user) {
+    localStorage.setItem('adminUser', `${user.username} ${user.createdAt} ${user.id}`);
     setAdmin(true);
   }
 
@@ -28,6 +29,7 @@ function AuthProvider(props) {
     setToken(null);
     setAdmin(false);
     localStorage.removeItem('userToken');
+    localStorage.removeItem('adminUser');
   }
 
   const ctx = {

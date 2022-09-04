@@ -31,7 +31,6 @@ function RegisterForm() {
         body: JSON.stringify(newLogin),
       });
       const result = await resp.json();
-      console.log(result);
       if (result.createdAt) {
         setRegister(true);
       }

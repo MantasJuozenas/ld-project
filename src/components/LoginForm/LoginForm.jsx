@@ -49,7 +49,7 @@ function LoginForm() {
       result.data.forEach((user) => {
         if (user.username === values.username && user.password === values.password) {
           if (user.username === 'admin') {
-            isAdmin();
+            isAdmin(user);
           }
           userFound(true);
           return;

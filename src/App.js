@@ -1,8 +1,10 @@
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
+import ProtectedRoute from './components/ProtectedRoute';
 import Wrapper from './components/Wrapper/Wrapper';
 import HomePage from './page/HomePage/HomePage';
 import LoginPage from './page/LoginPage/LoginPage';
+import PageNotFound from './page/PageNotFound/PageNotFound';
 import RegisterPage from './page/Register/RegisterPage';
 
 function App() {
@@ -16,13 +18,11 @@ function App() {
           <Route path={'/register'}>
             <RegisterPage />
           </Route>
-          <Route exact path={'/'}>
+          <ProtectedRoute exact path={'/'}>
             <HomePage />
-          </Route>
+          </ProtectedRoute>
           <Route path='*'>
-            <div className='container'>
-              <h2>Page not found</h2>
-            </div>
+            <PageNotFound />
           </Route>
         </Switch>
       </div>
