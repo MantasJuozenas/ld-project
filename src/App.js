@@ -3,6 +3,7 @@ import './App.css';
 import Wrapper from './components/Wrapper/Wrapper';
 import HomePage from './page/HomePage/HomePage';
 import LoginPage from './page/LoginPage/LoginPage';
+import RegisterPage from './page/Register/RegisterPage';
 
 function App() {
   return (
@@ -11,6 +12,9 @@ function App() {
         <Switch>
           <Route path={'/login'}>
             <LoginPage />
+          </Route>
+          <Route path={'/register'}>
+            <RegisterPage />
           </Route>
           <Route exact path={'/'}>
             <HomePage />
