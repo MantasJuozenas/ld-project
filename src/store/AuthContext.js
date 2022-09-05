@@ -6,6 +6,7 @@ export const AuthContext = createContext({
   isAdmin() {},
   isUserLoggedIn: false,
   admin: false,
+  user: '',
 });
 
 AuthContext.displayName = 'AuthContext';
@@ -15,10 +16,11 @@ function AuthProvider(props) {
   const [admin, setAdmin] = useState(false);
 
   function isAdmin(user) {
-    localStorage.setItem('adminUser', `${user.username} ${user.createdAt} ${user.id}`);
+    localStorage.setItem('user', [user.username, user.createdAt, user.id]);
     setAdmin(true);
   }
 
+  const isUserAdmin = !!localStorage.getItem('user');
   const isUserLoggedIn = !!token;
 
   function login(userToken) {
@@ -29,7 +31,7 @@ function AuthProvider(props) {
     setToken(null);
     setAdmin(false);
     localStorage.removeItem('userToken');
-    localStorage.removeItem('adminUser');
+    localStorage.removeItem('user');
   }
 
   const ctx = {
@@ -39,6 +41,7 @@ function AuthProvider(props) {
     token,
     isAdmin,
     admin,
+    isUserAdmin,
   };
   return <AuthContext.Provider value={ctx}>{props.children}</AuthContext.Provider>;
 }

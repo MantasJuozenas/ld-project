@@ -7,6 +7,11 @@ import { NavLink, useHistory } from 'react-router-dom';
 import { AuthContext } from '../../store/AuthContext';
 import clock from '../../assets/clock.svg';
 import Container from '../Container/Container';
+import Input from '../Input';
+import Button from '../Button';
+import MessageDiv from '../MessageDiv';
+import Paragraph from '../Paragraph';
+import InputContainer from '../InputContainer';
 
 const initValues = {
   username: '',
@@ -73,7 +78,7 @@ function LoginForm() {
     <Container>
       <form onSubmit={formik.handleSubmit} className={style.form}>
         <div>
-          <p className={style.loginTitle}>Susipažinkime</p>
+          <Paragraph className={style.loginTitle} text={'Susipažinkime'} />
           <nav>
             <NavLink className={`${style.navLink} ${active ? style.active : ''}`} to='/login'>
               Prisijungti
@@ -82,8 +87,8 @@ function LoginForm() {
               Registruotis
             </NavLink>
           </nav>
-          <div className={style.inputContainer}>
-            <input
+          <InputContainer className={style.inputContainer}>
+            <Input
               className={formik.touched.username && formik.errors.username ? `${style.errorInput}` : ''}
               type='text'
               placeholder='Vartotojo vardas (pvz Jonas)'
@@ -94,36 +99,42 @@ function LoginForm() {
               onBlur={formik.handleBlur}
             />
             {formik.touched.username && formik.errors.username ? (
-              <p className={style.errorMsg}>{errorMsg || formik.errors.username}</p>
+              <Paragraph className={style.errorMsg} text={errorMsg || formik.errors.username} />
             ) : (
-              <p className={`${style.padding} ${style.errorMsg}`}>{errorMsg ? errorMsg : error ? error : ''}</p>
+              <Paragraph
+                className={`${style.padding} ${style.errorMsg}`}
+                text={errorMsg ? errorMsg : error ? error : ''}
+              />
             )}
-          </div>
-          <div className={style.inputContainer}>
-            <input
+          </InputContainer>
+          <InputContainer className={style.inputContainer}>
+            <Input
               className={formik.touched.password && formik.errors.password ? `${style.errorInput}` : ''}
-              name='password'
               type='password'
               placeholder='Jūsų slaptažodis'
+              name='password'
               onChange={formik.handleChange}
-              value={formik.values.password}
               onFocus={handleFocus}
+              value={formik.values.password}
               onBlur={formik.handleBlur}
             />
             {formik.touched.password && formik.errors.password ? (
-              <p className={style.errorMsg}>{errorMsg || formik.errors.password}</p>
+              <Paragraph className={style.errorMsg} text={errorMsg || formik.errors.password} />
             ) : (
-              <p className={`${style.padding} ${style.errorMsg}`}>{errorMsg ? errorMsg : error ? error : ''}</p>
+              <Paragraph
+                className={`${style.padding} ${style.errorMsg}`}
+                text={errorMsg ? errorMsg : error ? error : ''}
+              />
             )}
-          </div>
-          <button type='submit'>Prisijungti</button>
+          </InputContainer>
+          <Button type='submit' text='Prisijungti' />
         </div>
-        <div>
-          <div className={style.message}>
-            <p>Prašome prisijungti įrašant vartotojo vardą ir slaptažodį</p>
-          </div>
-          <img className={style.clock} src={clock} alt='clock' />
-        </div>
+        <MessageDiv
+          classNameDiv={style.message}
+          classNameImg={style.clock}
+          src={clock}
+          text={'Prašome prisijungti įrašant vartotojo vardą ir slaptažodį'}
+        />
       </form>
     </Container>
   );

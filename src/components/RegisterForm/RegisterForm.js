@@ -5,6 +5,12 @@ import * as Yup from 'yup';
 import style from '../LoginForm/LoginForm.module.scss';
 import clock from '../../assets/clock.svg';
 import Container from '../Container/Container';
+import Input from '../Input';
+
+import Button from '../Button';
+import MessageDiv from '../MessageDiv';
+import Paragraph from '../Paragraph';
+import InputContainer from '../InputContainer';
 
 const initValues = {
   username: '',
@@ -55,15 +61,15 @@ function RegisterForm() {
     <Container>
       {register ? (
         <div className={style.successMessage}>
-          <p>Jūsų registracija buvo sėkminga, galite prisijungti čia</p>
+          <Paragraph text={'Jūsų registracija buvo sėkminga, galite prisijungti čia'} />
           <Link className={style.navLink} to={'/login'}>
-            <button>Prisijungti</button>
+            <Button text={'Prisijungti'} />
           </Link>
         </div>
       ) : (
         <form onSubmit={formik.handleSubmit} className={style.form}>
           <div>
-            <p className={style.loginTitle}>Susipažinkime</p>
+            <Paragraph className={style.loginTitle} text={'Susipažinkime'} />
             <nav>
               <NavLink className={style.navLink} to='/login'>
                 Prisijungti
@@ -76,8 +82,8 @@ function RegisterForm() {
                 Registruotis
               </NavLink>
             </nav>
-            <div className={style.inputContainer}>
-              <input
+            <InputContainer className={style.inputContainer}>
+              <Input
                 className={formik.touched.username && formik.errors.username ? `${style.errorInput}` : ''}
                 type='text'
                 placeholder='Vartotojo vardas (pvz Jonas)'
@@ -87,51 +93,51 @@ function RegisterForm() {
                 onBlur={formik.handleBlur}
               />
               {formik.touched.username && formik.errors.username ? (
-                <p className={style.errorMsg}>{formik.errors.username}</p>
+                <Paragraph className={style.errorMsg} text={formik.errors.username} />
               ) : (
-                <p className={`${style.padding} ${style.errorMsg}`}>{error ? error : ''}</p>
+                <Paragraph className={`${style.padding} ${style.errorMsg}`} text={error ? error : ''} />
               )}
-            </div>
-            <div className={style.inputContainer}>
-              <input
+            </InputContainer>
+            <InputContainer className={style.inputContainer}>
+              <Input
                 className={formik.touched.password && formik.errors.password ? `${style.errorInput}` : ''}
-                name='password'
                 type='password'
                 placeholder='Jūsų slaptažodis'
+                name='password'
                 onChange={formik.handleChange}
                 value={formik.values.password}
                 onBlur={formik.handleBlur}
               />
               {formik.touched.password && formik.errors.password ? (
-                <p className={style.errorMsg}>{formik.errors.password}</p>
+                <Paragraph className={style.errorMsg} text={formik.errors.password} />
               ) : (
-                <p className={`${style.padding} ${style.errorMsg}`}>{error ? error : ''}</p>
+                <Paragraph className={`${style.padding} ${style.errorMsg}`} text={error ? error : ''} />
               )}
-            </div>
-            <div className={style.inputContainer}>
-              <input
+            </InputContainer>
+            <InputContainer className={style.inputContainer}>
+              <Input
                 className={formik.touched.repPassword && formik.errors.repPassword && `${style.errorInput}`}
                 type='password'
-                name='repPassword'
                 placeholder='Pakartoti slaptažodį'
+                name='repPassword'
                 onChange={formik.handleChange}
                 value={formik.values.repPassword}
                 onBlur={formik.handleBlur}
               />
               {formik.touched.repPassword && formik.errors.repPassword ? (
-                <p className={style.errorMsg}>{formik.errors.repPassword}</p>
+                <Paragraph className={style.errorMsg} text={formik.errors.repPassword} />
               ) : (
-                <p className={`${style.padding} ${style.errorMsg}`}>{error ? error : ''}</p>
+                <Paragraph className={`${style.padding} ${style.errorMsg}`} text={error ? error : ''} />
               )}
-            </div>
-            <button type='submit'>Registruotis</button>
+            </InputContainer>
+            <Button type='submit' text='Registruotis' />
           </div>
-          <div>
-            <div className={style.message}>
-              <p>Prašome prisiregistruoti įrašant naują vartotojo vardą, slaptažodį, bei jį pakartoti</p>
-            </div>
-            <img className={style.clock} src={clock} alt='clock' />
-          </div>
+          <MessageDiv
+            classNameDiv={style.message}
+            classNameImg={style.clock}
+            src={clock}
+            text={'Prašome prisiregistruoti įrašant naują vartotojo vardą, slaptažodį, bei jį pakartoti'}
+          />
         </form>
       )}
     </Container>
