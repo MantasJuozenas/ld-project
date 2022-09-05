@@ -14,7 +14,7 @@ function HomePage() {
       <div className={style.homeContainer}>
         <h1>Home Page</h1>
         {isUserAdmin ? (
-          <>
+          <div>
             <div className={style.infoDiv}>
               <h2 className={style.title}>User info</h2>
               <h3 className={style.username}>
@@ -24,12 +24,19 @@ function HomePage() {
                 className={style.userInfo}
                 text={[
                   'Admin user was created at: ',
-                  <span className={style.purple}>{user ? user.split(',')[1].split('T')[0] : ''}</span>,
+                  <span key={1} className={style.purple}>
+                    {user ? user.split(',')[1].split('T')[0] : ''}
+                  </span>,
                 ]}
               />
               <Paragraph
                 className={style.userInfo}
-                text={['Admin user id: ', <span className={style.purple}>{user ? user.split(',')[2] : ''}</span>]}
+                text={[
+                  'Admin user id: ',
+                  <span key={2} className={style.purple}>
+                    {user ? user.split(',')[2] : ''}
+                  </span>,
+                ]}
               />
             </div>
             <div className={style.logoutDiv}>
@@ -37,7 +44,7 @@ function HomePage() {
                 Atsijungti
               </NavLink>
             </div>
-          </>
+          </div>
         ) : (
           <div className={`${style.infoDiv} ${style.span2}`}>
             <h2 className={style.title}>Welcome! This website is still in progress, more content is coming soon!</h2>

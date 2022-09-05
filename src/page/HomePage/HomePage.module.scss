@@ -1,8 +1,4 @@
 .homeContainer {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  grid-template-rows: 0.3fr 1fr;
-
   .logoutDiv {
     display: flex;
     align-items: center;
@@ -18,6 +14,10 @@
   }
 
   .title {
+    text-align: center;
+  }
+
+  .userInfo {
     text-align: center;
   }
 
