@@ -23,7 +23,7 @@ function App() {
             <RegisterPage />
           </Route>
           <ProtectedRoute exact path={'/'}>
-            {token ? <HomePage /> : history.push('/login')}
+            <HomePage />
           </ProtectedRoute>
           <Route path='*'>
             <PageNotFound />
